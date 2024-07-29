@@ -1,33 +1,18 @@
+{% extends '_main.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
+{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="stylesheet" href="{% static 'bootstrap-5/css/bootstrap.min.css' %}">
-</head>
+<h2>
+    Python - Produtos
+</h2>
+<p>
+    {{ product }}
+</p>
+<hr>
+{% for p in product %}
+<p>
+    <a href="{% url 'produto_single' p.id %}">{{ p.name }}</a>
+</p>
+{% endfor %}
 
-<body>
-
-    {% include 'menu.html' %}
-
-    <h2>
-        Python - Produtos
-    </h2>
-    <p>
-        {{ product }}
-    </p>
-    <hr>
-    {% for p in product %}
-   	<p>
-		<a href="{% url 'produto_single' p.id %}">{{ p.name }}</a>
-	</p>
-    {% endfor %}
-</body>
-<script type="text/javascript" src="{% static 'bootstrap-5/js/bootstrap.min.js' %}"></script>
-
-
-</html>
+{% endblock %}

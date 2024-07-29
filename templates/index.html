@@ -1,18 +1,6 @@
+{% extends '_main.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="stylesheet" href="{% static 'bootstrap-5/css/bootstrap.min.css' %}">
-    
-</head>
-
-<body>
-    {% include 'menu.html' %}
+{% block content %}
       
     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -90,7 +78,7 @@
     <h2>Notícias</h2>
     {{ news }}
     <hr>
-    <img src="{% static 'images/copa do brasil.png' %}" alt="Guitar">
+    <img width="100px" src="{% static 'images/sao-paulo.jpg' %}" alt="Guitar">
     {% for new in news %}
     <div class="noticia">
         <h3>{{ new.title }}</h3>
@@ -101,8 +89,4 @@
 
     <button onclick="f_teste()"> Função JS </button>
 
-    {% include 'footer.html' %}
-</body>
-    <script type="text/javascript" src="{% static 'bootstrap-5/js/bootstrap.min.js' %}"></script>
-
-</html>
+{% endblock %}

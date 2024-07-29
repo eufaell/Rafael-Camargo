@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Products, Blog, Category
+from .models import Products, Blog, Category, Shirt, Brand
 
 #admin.site.register(Products)
 
@@ -21,4 +21,15 @@ class Blog(admin.ModelAdmin):
 class Categoria(admin.ModelAdmin):
     list_display = ['cat_name', 'slug']
     search_fields = ['cat_name']
+    
+@admin.register(Shirt)
+class Camisa(admin.ModelAdmin):
+    list_display = ['name', 'mini_image']
+    search_fields = ['name']
+
+@admin.register(Brand)
+class Marca(admin.ModelAdmin):
+    list_display = ['mar_name', 'slug']
+    search_fields = ['mar_name']
+
     

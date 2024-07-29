@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
-from core.models import Products
+from core.models import Products, Blog, Category, Shirt, Brand
 
 # Create your views here.
 def index (request):
@@ -26,7 +26,7 @@ def index (request):
             }
         ]
     }
-    return render(request, 'index.html', context)
+    return render(request, 'index.html', context )
 
 def contato (request):
     return render(request, 'contato.html')
@@ -40,8 +40,34 @@ def produtos(request):
 
     data = {
         'product': product,
+
+        'title': 'Produtos Django',
     }
     return render(request, 'produtos.html', data)
 
-def blog (request):
-    return render(request, 'blog.html')
+def blogs (request):
+    blog = Blog.objects.all()
+
+    data = {
+        'blog': blog,
+        'title': 'Blog Django'
+    }
+    return render(request, 'blogs.html', data)
+
+def blog_single(request, slug):
+    blog = get_object_or_404(Blog, slug=slug)
+    return render(request, 'blog_single.html', {'title': 'Single'})
+
+def camisas(request):
+    camisa = Shirt.objects.all()
+
+    data = {
+        'camisa': camisa,
+        'title': 'Camisas Djano'
+    }
+    return render(request, 'camisas.html', data)
+    
+def camisas_single(request, slug):
+    camisa = get_object_or_404(Shirt, slug=slug)
+    return render(request, 'camisas_single.html', {'camisa': camisa})
+

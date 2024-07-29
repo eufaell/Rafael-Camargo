@@ -1,0 +1,22 @@
+{% extends '_main.html' %}
+{% load static %}
+{% block content %}
+
+    <h1>Camisas</h1>
+
+    <p>
+        Camisas
+    </p>
+
+    {% for c in camisa  %}
+    <p>
+        <a href="{% url 'camisas_single' c.slug %}">{{ c }}</a>
+    </p>
+
+    {% if c.image %}
+    <img src="{{ c.image.url }}" alt="{{ c.name }}" width="100">
+    {% endif %}
+
+    {% endfor %}
+
+{% endblock %}

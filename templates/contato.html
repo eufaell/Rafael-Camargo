@@ -1,28 +1,11 @@
+{% extends '_main.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contato</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="stylesheet" href="{% static 'bootstrap-5/css/bootstrap.min.css' %}">
-</head>
-<body>
+{% block content %}
 
-    {% include 'menu.html' %}
-    
-    <h2>
-        Python - 
+<h2>
+    Python - Contato
+</h2>
 
-        Alteração para o Git
-    </h2>
+{{ product }}
 
-    <p> {{phone}}</p>
-
-    <img src="{% static 'images/copa do brasil.png' %}" alt="oii">
-
-</body>
-<script type="text/javascript" src="{% static 'bootstrap-5/js/bootstrap.min.js' %}"></script>
-
-</html>
+{% endblock %}

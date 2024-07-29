@@ -1,0 +1,25 @@
+{% extends '_main.html' %}
+{% load static %}
+{% block content %}
+
+<h2>
+    Nome: {{ camisa.name }}
+</h2>
+
+
+<p>
+    R$ {{ camisa.price|floatformat:2 }}
+</p>
+
+<p>
+    Estoque: {{ camisa.stock }}
+
+    
+</p>
+
+<p>
+    Marca: {{ brand.mar_name }}
+</p>
+
+
+{% endblock %}

@@ -92,4 +92,52 @@ class Blog(models.Model):
     class Meta:
         verbose_name = "Blog"
         verbose_name_plural = "Blogs"
+
+class Shirt(models.Model):
+    name = models.CharField('Nome', unique=True, max_length=100)
+    price = models.DecimalField('Preço', decimal_places=2, max_digits=8)
+    stock = models.IntegerField('Quantidade em Estoque', blank=True, null=True)
+    descricao = models.CharField('Descrição', blank=True, null=True, max_length=100)
+    shi_category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
+    image = models.ImageField('Imagem da Capa', upload_to='images/produto', blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=True, max_length=255)
     
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.name)
+            slug = base_slug
+            counter = 1
+            while Blog.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
+
+    def mini_image(self):
+        if self.image:
+            return format_html('<img src="{}" style="height: 100px; width: auto;" />', self.image)
+        return " "
+    mini_image.short_description = 'Imagem de Capa'
+
+    def __str__(self):
+       return self.name
+
+    class Meta:
+        verbose_name = "Camisa"
+        verbose_name_plural = "Camisas"
+
+class Brand(models.Model):
+    mar_name = models.CharField('Marca da Camisa:', unique=True, max_length=255)
+    slug = models.SlugField(unique=True, blank=True, max_length=255)
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.mar_name)
+        super().save(*args, **kwargs)
+        
+    def __str__(self):
+        return self.mar_name
+    
+    class Meta:
+        verbose_name = "Marca"
+        verbose_name_plural = "Marcas"
